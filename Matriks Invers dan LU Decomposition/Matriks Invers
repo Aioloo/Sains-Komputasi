@@ -1,0 +1,36 @@
+import numpy as np
+
+def hitung_invers():
+    try:
+        baris = input ("Masukkan jumlah baris/kolom (matrkis berbentuk persegi) : ")
+        if not baris.isdigit() or int(baris) <= 0:
+            print ("Input tidak valid! Inputkan bilangan bulat positif")
+            return
+        baris = int(baris)
+
+        matriks = []
+        for i in range (baris):
+            try:
+                baris_matriks = list(map(float, input(f"Masukkan elemen baris ke-{i + 1}: ").split()))
+                if len(baris_matriks) != baris:
+                    print ("Input salah. Silahkan coba lagi! ")
+                    return
+                matriks.append(baris_matriks)
+            except ValueError:
+                print("Input salah. Silahkan coba lagi! ")
+                return
+
+        matriks = np.array(matriks)
+
+        print("\nMatriks Asli: ")
+        print(matriks)
+
+        invers = np.linalg.inv(matriks)
+
+        print("\nMatriks Invers: ")
+        print(invers)
+    except np.linalg.LinAlgError:
+        print("Matriks tidak memiliki Invers (determinannya nol)")
+
+if __name__ == "__main__":
+    hitung_invers()
