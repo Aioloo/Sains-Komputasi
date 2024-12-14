@@ -1,0 +1,23 @@
+import numpy as np
+
+# Linear Interpolation
+def linear_interpolation(x, x_points, y_points):
+    
+    for i in range(len(x_points) - 1):
+        if x_points[i] <= x <= x_points[i + 1]:
+            x0, x1 = x_points[i], x_points[i + 1]
+            y0, y1 = y_points[i], y_points[i + 1]
+            return y0 + (y1 - y0) * (x - x0) / (x1 - x0)
+    raise ValueError("x is outside the interpolation range")
+
+
+if __name__ == "__main__":
+    x_points = [40,50]
+    y_points = [65,90]
+
+    x = 45
+
+    # Linear interpolation
+    y_linear = linear_interpolation(x, x_points, y_points)
+    print(f"Linear interpolation dari x={x} adalah {y_linear}")
+
