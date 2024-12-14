@@ -1,6 +1,6 @@
 import numpy as np
 
-# Linear Interpolation
+
 def linear_interpolation(x, x_points, y_points):
     
     for i in range(len(x_points) - 1):
@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     x = 45
 
-    # Linear interpolation
+
     y_linear = linear_interpolation(x, x_points, y_points)
     print(f"Linear interpolation dari x={x} adalah {y_linear}")
 
