@@ -1,8 +1,8 @@
 def f(x):
-    return x**3 - x - 2  # Persamaan non-linear f(x) = x^3 - x - 2
+    return x**3 - x - 2  
 
 def bisection_method(a, b, tol, max_iter):
-    # Pastikan f(a) dan f(b) memiliki tanda yang berbeda
+   
     if f(a) * f(b) >= 0:
         print("Tidak ada akar di dalam interval ini.")
         return None
@@ -10,14 +10,13 @@ def bisection_method(a, b, tol, max_iter):
     iterasi = 0
     tabel = []
     while iterasi < max_iter:
-        c = (a + b) / 2  # Titik tengah
+        c = (a + b) / 2  
         tabel.append([iterasi + 1, a, b, c, f(c)])  # Simpan iterasi, a, b, c, dan f(c)
         
-        # Periksa apakah sudah cukup dekat dengan akar
         if abs(f(c)) < tol:
             break
         
-        # Update interval berdasarkan tanda f(c)
+       
         if f(a) * f(c) < 0:
             b = c
         else:
@@ -25,18 +24,18 @@ def bisection_method(a, b, tol, max_iter):
         
         iterasi += 1
 
-    # Cetak tabel iterasi
+ 
     print(f"{'Iterasi':<10} {'a':<10} {'b':<10} {'c':<10} {'f(c)':<10}")
     for row in tabel:
         print(f"{row[0]:<10} {row[1]:<10} {row[2]:<10} {row[3]:<10} {row[4]:<10}")
 
-    return (a + b) / 2  # Kembalikan akar yang ditemukan
+    return (a + b) / 2 
 
-# Contoh penggunaan metode Bisection
-a = 1  # Batas bawah
-b = 2  # Batas atas
-toleransi = 0.001  # Toleransi kesalahan
-maks_iterasi = 100  # Maksimum jumlah iterasi
+
+a = 1  
+b = 2  
+toleransi = 0.001  
+maks_iterasi = 100  
 
 akar = bisection_method(a, b, toleransi, maks_iterasi)
 if akar is not None:
