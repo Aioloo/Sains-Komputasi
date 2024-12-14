@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def linear_interpolation(x, x_points, y_points):
+def interpolasi_linear(x, x_points, y_points):
     
     for i in range(len(x_points) - 1):
         if x_points[i] <= x <= x_points[i + 1]:
