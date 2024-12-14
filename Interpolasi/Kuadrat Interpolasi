@@ -12,7 +12,6 @@ def quadratic_interpolation(x, x_points, y_points):
 
     return a * x**2 + b * x + c
 
-# Example Usage
 if __name__ == "__main__":
     x_points = [8,9,9.5]
     y_points = [2.0794, 2.1972, 2.2513]
