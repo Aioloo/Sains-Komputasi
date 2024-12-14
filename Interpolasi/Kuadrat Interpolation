@@ -1,4 +1,4 @@
-def quadratic_interpolation(x, x_points, y_points):
+def interpolasi_kuadrat(x, x_points, y_points):
 
     if len(x_points) != 3 or len(y_points) != 3:
         raise ValueError("Quadratic interpolation requires exactly 3 points")
