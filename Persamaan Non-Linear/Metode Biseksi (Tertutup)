@@ -1,7 +1,7 @@
 def f(x):
     return x**3 - x - 2  
 
-def bisection_method(a, b, tol, max_iter):
+def biseksi(a, b, tol, max_iter):
    
     if f(a) * f(b) >= 0:
         print("Tidak ada akar di dalam interval ini.")
