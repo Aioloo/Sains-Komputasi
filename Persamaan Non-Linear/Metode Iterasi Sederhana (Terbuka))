@@ -3,7 +3,7 @@ import math
 def g(x):
     return math.sqrt(2 * x + 3)
 
-def simple_iteration_method(x0, tol, max_iter):
+def iterasi_sederhana(x0, tol, max_iter):
     
     iterasi = 0
     tabel = [] 
