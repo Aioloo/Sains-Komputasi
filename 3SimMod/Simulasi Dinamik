@@ -1,0 +1,10 @@
+def dynamic_simulation(initial_population, growth_rate, time_steps):
+    population = initial_population
+    for t in range(time_steps):
+        population += population * growth_rate
+        print(f"Time {t + 1}: Population = {population:.2f}")
+
+initial_population = 100
+growth_rate = 0.1  # 10% per time step
+time_steps = 5
+dynamic_simulation(initial_population, growth_rate, time_steps)
