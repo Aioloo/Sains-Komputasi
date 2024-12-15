@@ -1,0 +1,8 @@
+def deterministic_simulation(initial_position, velocity, time_steps):
+    positions = [initial_position + velocity * t for t in range(time_steps)]
+    return positions
+
+initial_position = 0
+velocity = 5  # 5 units per time step
+time_steps = 10
+print("Deterministic Simulation - Positions:", deterministic_simulation(initial_position, velocity, time_steps))
