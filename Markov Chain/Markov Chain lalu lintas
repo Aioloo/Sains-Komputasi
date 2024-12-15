@@ -1,0 +1,68 @@
+import random
+import matplotlib.pyplot as plt
+
+def simulate_traffic_multilocation(locations, states, transition_matrices, steps, initial_states):
+    current_states = initial_states
+    traffic_history = {loc: [state] for loc, state in zip(locations, current_states)}
+
+    for _ in range(steps):
+        next_states = {}
+        for loc in locations:
+            current_state = traffic_history[loc][-1]
+            next_state = random.choices(states, transition_matrices[loc][current_state])[0]
+            next_states[loc] = next_state
+            traffic_history[loc].append(next_state)
+        current_states = next_states
+
+    return traffic_history
+
+def plot_traffic_simulation(traffic_history, steps):
+    locations = list(traffic_history.keys())
+    states = ["Lancar", "Padat", "Macet"]
+    colors = {"Lancar": "green", "Padat": "orange", "Macet": "red"}
+    
+    plt.figure(figsize=(12, 6))
+    for loc in locations:
+        state_data = [states.index(state) for state in traffic_history[loc]]
+        plt.plot(range(steps + 1), state_data, label=f"Lokasi {loc}", marker='o')
+    
+    plt.yticks(range(len(states)), states)
+    plt.xlabel("Langkah Waktu")
+    plt.ylabel("Keadaan Lalu Lintas")
+    plt.title("Simulasi Lalu Lintas Multilokasi")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+# Definisi lokasi, keadaan, dan matriks transisi per lokasi
+locations = ["Jalan A", "Jalan B"]
+states = ["Lancar", "Padat", "Macet"]
+
+transition_matrices = {
+    "Jalan A": {
+        "Lancar": [0.7, 0.2, 0.1],
+        "Padat": [0.3, 0.5, 0.2],
+        "Macet": [0.1, 0.4, 0.5],
+    },
+    "Jalan B": {
+        "Lancar": [0.6, 0.3, 0.1],
+        "Padat": [0.2, 0.5, 0.3],
+        "Macet": [0.1, 0.3, 0.6],
+    },
+}
+
+# Parameter simulasi
+steps = 20
+initial_states = ["Lancar", "Padat"]
+
+# Menjalankan simulasi
+traffic_history = simulate_traffic_multilocation(locations, states, transition_matrices, steps, initial_states)
+
+# Menampilkan hasil simulasi
+for loc in locations:
+    print(f"Simulasi Lalu Lintas di {loc}:")
+    print(" -> ".join(traffic_history[loc]))
+    print()
+
+# Visualisasi hasil simulasi
+plot_traffic_simulation(traffic_history, steps)
