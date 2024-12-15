@@ -1,0 +1,19 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+def continuous_distribution_simulation(mean, std_dev, num_samples):
+    samples = np.random.normal(mean, std_dev, num_samples)
+    return samples
+
+mean = 0  # Rata-rata
+std_dev = 1  # Standar deviasi
+num_samples = 1000
+
+samples = continuous_distribution_simulation(mean, std_dev, num_samples)
+
+# Plot hasil distribusi kontinu
+plt.hist(samples, bins=30, density=True, alpha=0.7, color='blue')
+plt.title("Distribusi Normal (Kontinu)")
+plt.xlabel("Nilai")
+plt.ylabel("Kerapatan")
+plt.show()
