@@ -1,0 +1,8 @@
+import random
+
+def stochastic_simulation(rolls):
+    results = [random.randint(1, 6) for _ in range(rolls)]
+    return results
+
+rolls = 10
+print("Stochastic Simulation - Dice Rolls:", stochastic_simulation(rolls))
