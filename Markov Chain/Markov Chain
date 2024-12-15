@@ -1,0 +1,30 @@
+import random
+
+def markov_chain(states, transition_matrix, steps, initial_state):
+    current_state = initial_state
+    history = [current_state]
+    
+    for _ in range(steps):
+        next_state = random.choices(states, transition_matrix[current_state])[0]
+        history.append(next_state)
+        current_state = next_state
+
+    return history
+
+# Definisi state dan matriks transisi
+states = ['A', 'B', 'C']
+transition_matrix = {
+    'A': [0.1, 0.6, 0.3],  # Probabilitas transisi dari A
+    'B': [0.4, 0.4, 0.2],  # Probabilitas transisi dari B
+    'C': [0.2, 0.3, 0.5]   # Probabilitas transisi dari C
+}
+
+steps = 20
+initial_state = 'A'
+
+# Simulasi Markov Chain
+history = markov_chain(states, transition_matrix, steps, initial_state)
+
+# Format output dengan panah
+formatted_output = " -> ".join(history)
+print(f"Rantai Markov: {formatted_output}")
