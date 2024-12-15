@@ -1,0 +1,237 @@
+import numpy as np
+
+def tampilkan_matriks_list():
+    print("===== Menggunakan List =====")
+    print("Pilih jenis matriks yang ingin dibuat:")
+    print("1. Matriks 1D")
+    print("2. Matriks 2D")
+    print("3. Matriks 3D")
+    
+    pilihan = input("Masukkan pilihan (1-3): ")
+    
+    if pilihan == '1':
+        matrik_1d = list(map(float, input("Masukkan elemen matrik 1D: ").split()))
+        print("Matrik 1D:", matrik_1d)
+
+    elif pilihan == '2':
+        baris_2d = int(input("Masukkan jumlah baris untuk matrik 2D: "))
+        matrik_2d = []
+        for i in range(baris_2d):
+            baris_matriks = list(map(float, input(f"Masukkan elemen baris {i+1}: ").split()))
+            matrik_2d.append(baris_matriks)
+        print("Matrik 2D:", matrik_2d)
+
+    elif pilihan == '3':
+        lapisan_3d = int(input("Masukkan jumlah lapisan untuk matrik 3D: "))
+        matrik_3d = []
+        for i in range(lapisan_3d):
+            lapisan = []
+            baris_2d = int(input(f"Masukkan jumlah baris untuk lapisan {i+1}: "))
+            for j in range(baris_2d):
+                baris_matriks = list(map(float, input(f"Masukkan elemen baris {j+1} untuk lapisan {i+1}: ").split()))
+                lapisan.append(baris_matriks)
+            matrik_3d.append(lapisan)
+        print("Matrik 3D:", matrik_3d)
+
+    else:
+        print("Pilihan tidak valid! Silakan coba lagi.")
+        return
+
+    manipulasi = input("Apakah Anda ingin melakukan manipulasi elemen? (ya/tidak): ").strip().lower()
+    
+    if manipulasi == 'ya':
+        if pilihan == '1':
+            manipulasi_1d(matrik_1d)
+        elif pilihan == '2':
+            manipulasi_2d(matrik_2d)
+        elif pilihan == '3':
+            manipulasi_3d(matrik_3d)
+    else:
+        print("Manipulasi elemen dibatalkan.")
+
+def manipulasi_1d(matrik_1d):
+    print("===== Manipulasi elemen pada matriks 1D =====")
+    print("Sebelum manipulasi:", matrik_1d)
+    elemen_append = float(input("Masukkan elemen yang ingin ditambahkan (append): "))
+    matrik_1d.append(elemen_append)
+    print("Setelah append:", matrik_1d)
+    index_insert = int(input("Masukkan index untuk menyisipkan elemen (0 hingga {}): ".format(len(matrik_1d))))
+    elemen_insert = float(input("Masukkan elemen yang ingin disisipkan (insert): "))
+    matrik_1d.insert(index_insert, elemen_insert)
+    print("Setelah insert:", matrik_1d)
+    print("----------------------------------")
+
+def manipulasi_2d(matrik_2d):
+    print("===== Manipulasi elemen pada matriks 2D =====")
+    print("Sebelum manipulasi:", matrik_2d)
+    elemen_append_2d = float(input("Masukkan elemen yang ingin ditambahkan (append): "))
+    matrik_2d[0].append(elemen_append_2d)
+    print("Setelah append ke baris pertama:", matrik_2d)
+    index_insert_2d = int(input("Masukkan index untuk menyisipkan elemen (0 hingga {}): ".format(len(matrik_2d[1]))))
+    elemen_insert_2d = float(input("Masukkan elemen yang ingin disisipkan ke baris kedua (insert): "))
+    matrik_2d[1].insert(index_insert_2d, elemen_insert_2d)
+    print("Setelah insert ke baris kedua:", matrik_2d)
+    print("----------------------------------")
+
+def manipulasi_3d(matrik_3d):
+    print("===== Manipulasi elemen pada matriks 3D =====")
+    print("Sebelum manipulasi:", matrik_3d)
+    elemen_append_3d = float(input ("(append): "))
+    matrik_3d[0][0].append(elemen_append_3d)
+    print("Setelah append ke lapisan pertama:", matrik_3d)
+    index_insert_3d = int(input("Masukkan index untuk menyisipkan elemen(0 hingga {}): ".format(len(matrik_3d[1][0]))))
+    elemen_insert_3d = float(input("Masukkan elemen yang ingin disisipkan(insert): "))
+    matrik_3d[1][0].insert(index_insert_3d, elemen_insert_3d)
+    print("Setelah insert ke lapisan kedua:", matrik_3d)
+    print("----------------------------------")
+
+def jenis_matriks():
+    print("===== Jenis Matriks =====")
+    print("1. Matriks Diagonal")
+    print("2. Matriks Identitas")
+    print("3. Matriks Skalar")
+    print("4. Matriks Bujur Sangkar")
+    print("5. Matriks Persegi Panjang")
+    print("6. Matriks Nol")
+
+    pilihan = input("Pilih jenis matriks (1-6): ")
+
+    if pilihan == '1':
+        n = int(input("Masukkan ukuran matriks diagonal: "))
+        min_val = int(input("Masukkan nilai minimum untuk elemen diagonal: "))
+        max_val = int(input("Masukkan nilai maksimum untuk elemen diagonal: "))
+        diagonal = np.diag(np.random.randint(min_val, max_val, size=n))
+        print("Matriks Diagonal:\n", diagonal)
+    elif pilihan == '2':
+        n = int(input("Masukkan ukuran matriks identitas: "))
+        identitas = np.identity(n)
+        print("Matriks Identitas:\n", identitas)
+    elif pilihan == '3':
+        n = int(input("Masukkan ukuran matriks skalar: "))
+        nilai_skalar = int(input("Masukkan nilai untuk elemen diagonal matriks skalar: "))
+        skalar = np.diag([nilai_skalar] * n)
+        print("Matriks Skalar:\n", skalar)
+    elif pilihan == '4':
+        n = int(input("Masukkan ukuran matriks bujur sangkar: "))
+        bujur_sangkar = np.zeros((n, n))
+        print("Matriks Bujur Sangkar:\n", bujur_sangkar)
+    elif pilihan == '5':
+        baris = int(input("Masukkan jumlah baris untuk matriks persegi panjang: "))
+        kolom = int(input("Masukkan jumlah kolom untuk matriks persegi panjang: "))
+        persegi_panjang = np.zeros((baris, kolom))
+        print("Matriks Persegi Panjang:\n", persegi_panjang)
+    elif pilihan == '6':
+        baris = int(input("Masukkan jumlah baris untuk matriks nol: "))
+        kolom = int(input("Masukkan jumlah kolom untuk matriks nol: "))
+        matriks_nol = np.zeros((baris, kolom))
+        print("Matriks Nol:\n", matriks_nol)
+    else:
+        print("Pilihan tidak valid!")
+
+def operasi_matriks():
+    print("===== Operasi Matriks =====")
+    print("1. Perkalian Skalar")
+    print("2. Penjumlahan")
+    print("3. Pengurangan")
+    print("4. Perkalian")
+    print("5. Pembagian")
+    
+    pilihan = input("Pilih operasi (1-5): ")
+    
+    if pilihan in ['1', '2', '3', '4', '5']:
+        matrik1 = np.array(eval(input("Masukkan matrik pertama :")))
+        matrik2 = np.array(eval(input("Masukkan matrik kedua : ")))
+        
+        if pilihan == '1':
+            k = float(input("Masukkan nilai skalar: "))
+            hasil = k * matrik1
+            print("Hasil Perkalian Skalar:\n", hasil)
+        elif pilihan == '2':
+            hasil = matrik1 + matrik2
+            print("Hasil Penjumlahan:\n", hasil)
+        elif pilihan == '3':
+            hasil = matrik1 - matrik2
+            print("Hasil Pengurangan:\n", hasil)
+        elif pilihan == '4':
+            hasil = matrik1 @ matrik2
+            print("Hasil Perkalian:\n", hasil)
+        elif pilihan == '5':
+            hasil = matrik1 / matrik2
+            print("Hasil Pembagian:\n", hasil)
+    else:
+        print("Pilihan tidak valid!")
+
+def transpose_matriks():
+    print("====== Transpose Matriks =====")
+    baris = int(input("Masukkan jumlah baris matriks: "))
+    kolom = int(input("Masukkan jumlah kolom matriks: "))
+
+    X = []
+    print("Masukkan elemen Matriks:")
+    for i in range(baris):
+        baris_matriks = list(map(int, input(f"Baris {i+1} (pisahkan dengan spasi): ").split()))
+        X.append(baris_matriks)
+
+    result = [[0] * baris for _ in range(kolom)]
+
+    for i in range(baris):
+        for j in range(kolom):
+            result[j][i] = X[i][j]
+
+    print("Hasil Transposisi:")
+    for r in result:
+        print(" ".join(map(str, r)))
+
+def aritmatika():
+    print("====== Perhitungan Aritmatika =====")
+    
+    jumlah_data = int(input("Masukkan jumlah data yang ingin dihitung: "))
+    data = []
+
+    for i in range(jumlah_data):
+        nilai = int(input(f"Masukkan nilai ke-{i+1}: "))
+        data.append(nilai)
+
+    penjumlahan = sum(data)
+
+    pengurangan = data[0]
+    for nilai in data[1:]:
+        pengurangan -= nilai
+
+    perkalian = 1
+    for nilai in data:
+        perkalian *= nilai
+
+    print("Hasil penjumlahan:", penjumlahan)
+    print("Hasil pengurangan:", pengurangan)
+    print("Hasil perkalian:", perkalian)
+
+def menu():
+    while True:
+        print("====== Menu ======")
+        print("1. Membuat Matriks Menggunakan List")
+        print("2. Membuat Jenis-jenis Matriks")
+        print("3. Operasi Matriks")
+        print("4. Transposisi Matriks")
+        print("5. Perhitungan Aritmatika")
+        print("6. Keluar")
+        
+        pilihan = input("Pilih operasi (1-6): ")
+        if pilihan == '1':
+            tampilkan_matriks_list()
+        elif pilihan == '2':
+            jenis_matriks()
+        elif pilihan == '3':
+            operasi_matriks()
+        elif pilihan == '4':
+            transpose_matriks()
+        elif pilihan == '5':
+            aritmatika()
+        elif pilihan == '6':
+            print("Terima kasih! Program selesai.")
+            break
+        else:
+            print("Pilihan tidak valid! Silakan coba lagi.")
+
+if __name__ == "__main__": 
+    menu()
