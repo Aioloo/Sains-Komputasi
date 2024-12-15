@@ -1,0 +1,20 @@
+import random
+
+def monte_carlo_pi_with_progress(simulations):
+    inside_circle = 0
+    for i in range(simulations):
+        x = random.uniform(-1, 1)
+        y = random.uniform(-1, 1)
+        if x*2 + y*2 <= 1:
+            inside_circle += 1
+        
+        # Menampilkan progres sebagai persentase
+        if (i + 1) % (simulations // 100) == 0:  # Setiap 1% progres
+            progress = (i + 1) / simulations * 100
+            print(f"Progress: {progress:.0f}%", end="\r")  # Cetak di baris yang sama
+
+    return (inside_circle / simulations) * 4
+
+simulations = 1_000_000
+pi_estimate = monte_carlo_pi_with_progress(simulations)
+print(f"\nEstimasi nilai π: {pi_estimate}")
