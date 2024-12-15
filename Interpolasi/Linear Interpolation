@@ -18,6 +18,6 @@ if __name__ == "__main__":
     x = 45
 
 
-    y_linear = linear_interpolation(x, x_points, y_points)
+    y_linear = interpolasi_linear(x, x_points, y_points)
     print(f"Linear interpolation dari x={x} adalah {y_linear}")
 
