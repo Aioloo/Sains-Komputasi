@@ -1,0 +1,24 @@
+import matplotlib.pyplot as plt
+
+def lcg(seed, a, c, m, n):
+    random_numbers = []
+    X = seed
+    for _ in range(n):
+        X = (a * X + c) % m
+        random_numbers.append(X / m) 
+    return random_numbers
+
+seed = 42     # Nilai awal
+a = 1664525   # Multiplier
+c = 1013904223 # Increment
+m = 2**32     # Modulus
+n = 20        # Jumlah bilangan pseudo-random yang dihasilkan
+
+random_numbers = lcg(seed, a, c, m, n)
+print("Bilangan pseudo-random yang dihasilkan:", random_numbers)
+
+plt.hist(random_numbers, bins=10, edgecolor='k', alpha=0.7)
+plt.title("Distribusi Bilangan Pseudo-random")
+plt.xlabel("Nilai")
+plt.ylabel("Frekuensi")
+plt.show()
