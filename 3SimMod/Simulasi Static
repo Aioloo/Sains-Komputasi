@@ -1,0 +1,7 @@
+def static_simulation(cost_per_item, number_of_items):
+    total_cost = cost_per_item * number_of_items
+    return total_cost
+
+cost_per_item = 10
+number_of_items = 50
+print("Static Simulation - Total Cost:", static_simulation(cost_per_item, number_of_items))
